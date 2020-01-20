@@ -1,4 +1,4 @@
-<div class="mk-slot-container">
+<!-- <div class="mk-slot-container">
   <ul #spinner class="mk-spinner" [ngClass]="{'mk-spinning': running}" [ngStyle]="{transform: transform}">
     <li *ngFor="let item of items" class="text-item-wrap text-center mk-slot-item" style="line-height:1em;">
       <img style="height:38px;" [src]="getImage(item)">
@@ -6,4 +6,13 @@
       <span class="mk-label">{{item.name}}</span>
     </li>
   </ul>
+</div> -->
+
+<div #spinner class="carousel">
+  <figure #figure [ngClass]="{'mk-spinning': running}" [ngStyle]="{transform: transform, transformOrigin: transformOrigin}">
+    <div *ngFor="let item of items" class="mk-slot-item">
+      <img  [src]="getImage(item)" [alt]="item.name">
+      <span class="mk-label">{{item.name}}</span>
+  </div>
+</figure>
 </div>

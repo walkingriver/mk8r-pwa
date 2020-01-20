@@ -13,69 +13,77 @@ export class ContainerComponent implements AfterViewInit {
   public transform: string;
   public running: boolean;
 
-  @ViewChild('spinner', {static: true}) private spinner: ElementRef;
-  private wheel: any;
+  // @ViewChild('spinner', { static: true }) private root: ElementRef;
+  @ViewChild('figure', { static: true }) private figureTag: ElementRef;
+
+  figure: any;
+  currentItem = 0;
+  translateZ = 0;
+  itemAngle = 0;
+  itemCount = 0;
+  images: HTMLCollectionOf<HTMLElement>;
+  // spinner = {};
+  gap = 0;
+  bfc = false;
+  rotate = ''
+  theta = 0;
   private audio = ContainerComponent.audio.cloneNode() as HTMLAudioElement;
+  transformOrigin: string;
 
   constructor(private zone: NgZone) {
-    this.wheel = {
-      item: 0,
-      translateZ: 0,
-      itemAngle: 0,
-      itemCount: 0,
-      tiles: [],
-      spinner: {},
-      rotate: ''
-    };
   }
 
   ngAfterViewInit(): void {
     console.log('Initializing Slot3d');
 
-    this.wheel.spinner = this.spinner.nativeElement;
-    this.wheel.tiles = this.wheel.spinner.children;
+    // this.spinner = this.root.nativeElement;
+    this.figure = this.figureTag.nativeElement;
+    this.images = this.figure.children as HTMLCollectionOf<HTMLElement>;
 
-    // const panelSize = this.wheel.tiles[0].clientHeight;
-    const panelSize = 95;
-    const itemCount = this.wheel.tiles.length;
-    const itemAngle = 360 / itemCount;
-    const tz = Math.round((panelSize / 2) / Math.tan(Math.PI / itemCount));
-    const translateZ = 'translateZ(' + tz + 'px)';
+    this.itemCount = this.images.length;
 
-    console.log(`Item list contains ${itemCount} items, meaning each will require ${itemAngle} deg and ${tz} px each.`);
+    this.theta = 2 * Math.PI / this.itemCount;
 
-    for (let i = 0; i < itemCount; i++) {
-      // Set 3D rotation
-      const rotate = 'rotateX(' + i * itemAngle + 'deg)';
-      const el = this.wheel.tiles[i];
-      el.style.transform = rotate + ' ' + translateZ;
+    // Promise.resolve(null).then(() => this.item = r);
+
+    this.setupCarousel(this.itemCount, parseFloat(getComputedStyle(this.images[0]).width));
+  }
+
+  private setupCarousel(n, s) {
+    const apothem = s / (2 * Math.tan(Math.PI / n));
+
+    this.transformOrigin = `50% 50% ${- apothem}px`;
+
+    for (var i = 0; i < n; i++)
+      this.images[i].style.padding = `${this.gap}px`;
+    for (i = 1; i < n; i++) {
+      this.images[i].style.transformOrigin = `50% 50% ${- apothem}px`;
+      this.images[i].style.transform = `rotateX(${i * this.theta}rad)`;
     }
+    if (this.bfc)
+      for (i = 0; i < n; i++)
+        this.images[i].style.backfaceVisibility = 'hidden';
 
-    // We'll need these later
-    this.wheel.translateZ = -tz;
-    this.wheel.item = 0;
-    this.wheel.itemAngle = -itemAngle;
-    this.wheel.itemCount = itemCount;
+    this.rotateCarousel(this.item);
+  }
 
-    // Set the initial value to something random
-    const r = Math.floor(Math.random() * (this.wheel.itemCount - 1));
-
-    // Delay update for a bit to avoid improper change detection
-    Promise.resolve(null).then(() => this.item = r);
+  rotateCarousel(i) {
+    this.item = i;
   }
 
   get item(): number {
-    return this.wheel.item;
+    return this.currentItem;
   }
 
   set item(value: number) {
-    if (value < 0 || value > this.wheel.itemCount) { value = 0; }
+    if (value < 0 || value > this.itemCount) { value = 0; }
 
-    this.wheel.item = value;
+    this.currentItem = value;
 
     // Transform the container opposite the item's transform.
-    const rotate = 'rotateX(' + value * this.wheel.itemAngle + 'deg)';
+    const rotate = 'rotateX('+value * -(this.theta) + 'rad)';
     this.transform = rotate;
+    // this.figure.style.transform = rotate;
   }
 
   getItemByName(name: string): number {
@@ -103,7 +111,7 @@ export class ContainerComponent implements AfterViewInit {
 
   start() {
     this.running = true;
-    this.audio.play();
+    // this.audio.play();
   }
 
   stop(item: number) {
@@ -126,7 +134,7 @@ export class ContainerComponent implements AfterViewInit {
         }
 
         if (item < 0) {
-          item = Math.floor(Math.random() * (this.wheel.itemCount - 1));
+          item = Math.floor(Math.random() * (this.itemCount - 1));
         }
 
         setTimeout(() => {

@@ -1,36 +1,36 @@
-.mk-slot-container {
-  height: 100px;
-  background-color: white;
-  border-style: inset;
-  border-color: antiquewhite;
-  border-width: 1px;
-  width: 80px;
-  position: relative;
-  perspective: 3000px;
-  overflow: hidden;
-  text-align: center;
-}
+// .mk-slot-container {
+//   height: 100px;
+//   background-color: white;
+//   border-style: inset;
+//   border-color: antiquewhite;
+//   border-width: 1px;
+//   width: 80px;
+//   position: relative;
+//   perspective: 3000px;
+//   overflow: hidden;
+//   text-align: center;
+// }
 
-.mk-spinner {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  transition: transform 0.5s ease-in;
-  -webkit-transition: -webkit-transform 0.5s ease-in;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
+// .mk-spinner {
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   transform-style: preserve-3d;
+//   -webkit-transform-style: preserve-3d;
+//   transition: transform 0.5s ease-in;
+//   -webkit-transition: -webkit-transform 0.5s ease-in;
+//   backface-visibility: hidden;
+//   -webkit-backface-visibility: hidden;
+// }
 
 .mk-slot-item {
   margin: 0;
   display: block;
   position: absolute;
-  width: 58px;
-  height: 80px;
-  left: 10px;
-  top: 10px;
+  width: 100%;
+  height: 100%;
+  // left: 10px;
+  // top: 10px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -82,4 +82,45 @@
   font-size: 11px;
   line-height: 11px;
   -moz-only-whitespace: wrap;
+}
+
+/* Below is from 
+https://www.sitepoint.com/building-3d-rotating-carousel-css-javascript/ */
+
+$item-width: 22%; // Now we can use percentages
+$item-separation: 0px; // This now is set with Js
+$viewer-distance: 3000px;
+
+.carousel {
+  padding: 20px;
+
+  perspective: $viewer-distance;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  figure {
+    margin: 0;
+    width: $item-width;
+
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+
+    img {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 $item-separation / 2;
+
+      &:not(:first-of-type) {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
 }
