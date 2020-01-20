@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h2>Characters</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="!isValidCharacters">
+        <ion-icon name="warning" color="danger"></ion-icon>
+        You need to select at least one character type other than Mii.
+      </div>
+      <ion-item *ngFor="let size of CharacterSize | enum">
+        <ion-label>Include {{ CharacterSize[size] }}</ion-label>
+        <ion-checkbox [checked]="isCharacterEnabled(size)" (ionChange)="enableCharacter(size, $event.detail.checked)"></ion-checkbox>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <h2>Vehicles</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="!isValidVehicles">
+        <ion-icon name="warning" color="danger"></ion-icon>
+        You need to select at least one vehicle type.
+      </div>
+      <ion-item *ngFor="let type of VehicleType | enum">
+        <ion-label>Include {{ VehicleType[type] }}</ion-label>
+        <ion-checkbox [checked]="isVehicleEnabled(type)" (ionChange)="enableVehicle(type, $event.detail.checked)"></ion-checkbox>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <h2>Options</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Allow Duplicates</ion-label>
+        <ion-checkbox [checked]="isDuplicatesEnabled()" (ionChange)="enableDuplicates($event.detail.checked)"></ion-checkbox>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

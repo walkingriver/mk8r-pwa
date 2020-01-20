@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Randomizer
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button icon-only (click)="shuffleItems()">
+        <ion-icon name="shuffle" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let player of players; let i = index" col-3>
+        <ion-row>
+          <mk-container #character [items]="characters" (click)="shuffleCharacter(character)"></mk-container>
+        </ion-row>
+        <ion-row>
+          <mk-container #vehicle [items]="vehicles" (click)="shuffleVehicle(vehicle)"></mk-container>
+        </ion-row>
+        <ion-row>
+          <mk-container #wheel [items]="wheels" (click)="shuffleWheel(wheel)"></mk-container>
+        </ion-row>
+        <ion-row>
+          <mk-container #glider [items]="gliders" (click)="shuffleGlider(glider)"></mk-container>
+        </ion-row>
+        <ion-row>
+          <ion-button size="small" [color]="player.color" expand="block" (click)="shuffleItems(i)">
+            {{ player.name }}
+          </ion-button>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

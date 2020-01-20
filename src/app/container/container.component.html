@@ -1,0 +1,9 @@
+<div class="mk-slot-container">
+  <ul #spinner class="mk-spinner" [ngClass]="{'mk-spinning': running}" [ngStyle]="{transform: transform}">
+    <li *ngFor="let item of items" class="text-item-wrap text-center mk-slot-item" style="line-height:1em;">
+      <img style="height:38px;" [src]="getImage(item)">
+      <br/>
+      <span class="mk-label">{{item.name}}</span>
+    </li>
+  </ul>
+</div>
