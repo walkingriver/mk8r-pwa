@@ -1,5 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit, NgZone } from '@angular/core';
 import { MkItem } from '../mk-item';
+import { timer } from 'rxjs';
+import { tap, takeWhile, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'mk-container',
@@ -13,7 +15,7 @@ export class ContainerComponent implements AfterViewInit {
   public transform: string;
   public running: boolean;
 
-  @ViewChild('spinner', {static: true}) private spinner: ElementRef;
+  @ViewChild('spinner', { static: true }) private spinner: ElementRef;
   private wheel: any;
   private audio = ContainerComponent.audio.cloneNode() as HTMLAudioElement;
 
@@ -36,7 +38,8 @@ export class ContainerComponent implements AfterViewInit {
     this.wheel.tiles = this.wheel.spinner.children;
 
     // const panelSize = this.wheel.tiles[0].clientHeight;
-    const panelSize = 95;
+    const panelSize = parseFloat(getComputedStyle(this.wheel.tiles[0]).height);
+    // const panelSize = 95;
     const itemCount = this.wheel.tiles.length;
     const itemAngle = 360 / itemCount;
     const tz = Math.round((panelSize / 2) / Math.tan(Math.PI / itemCount));
@@ -103,7 +106,7 @@ export class ContainerComponent implements AfterViewInit {
 
   start() {
     this.running = true;
-    this.audio.play();
+    // this.audio.play();
   }
 
   stop(item: number) {
@@ -114,29 +117,26 @@ export class ContainerComponent implements AfterViewInit {
   }
 
   spin(name: string, duration?: number): Promise<number> {
-    return new Promise((resolve, reject) => {
-      duration = duration || 2000;
+    const ender = timer(10, 500)
+      .pipe(tap(() => {
+        this.item = Math.floor(Math.random() * (this.wheel.itemCount - 1));
+      }),
+        takeWhile((v, i) => i < 5),
+        finalize(() => {
+          let newItem = -1;
+          if (name) {
+            newItem = this.getItemByName(name);
+          }
 
-      setTimeout(() => {
-        this.start();
+          if (newItem < 0) {
+            newItem = Math.floor(Math.random() * (this.wheel.itemCount - 1));
+          }
 
-        let item = -1;
-        if (name) {
-          item = this.getItemByName(name);
-        }
+          this.item = newItem;
+        }))
+      .toPromise();
 
-        if (item < 0) {
-          item = Math.floor(Math.random() * (this.wheel.itemCount - 1));
-        }
-
-        setTimeout(() => {
-          this.zone.run(() => {
-            this.stop(item);
-            resolve(item);
-          });
-        }, duration);
-      }, 1);
-    });
+    return ender;
   }
 }
 
