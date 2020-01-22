@@ -30,10 +30,10 @@ export class HomePage implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.sub = this.chars.spin(100).subscribe();
-    this.sub.add(this.tires.spin(100).subscribe());
-    this.sub.add(this.wings.spin(100).subscribe());
-    this.sub.add(this.cars.spin(100).subscribe());
+    this.sub = this.chars.roll(100).subscribe();
+    this.sub.add(this.tires.roll(100).subscribe());
+    this.sub.add(this.wings.roll(100).subscribe());
+    this.sub.add(this.cars.roll(100).subscribe());
   }
 
   ngOnDestroy() {

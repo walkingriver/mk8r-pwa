@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MkItem } from '../mk-item';
 import { interval } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, takeWhile, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-random-block',
@@ -28,9 +28,30 @@ export class RandomBlockComponent implements OnInit {
     this.topItem = this.items[pickOne];
   }
 
-  spin(period) {
+  /***
+   * Indefinitely rolls the images until unsubscribed
+   *  */
+  roll(period) {
     return interval(period)
       .pipe(tap((i) => { this.randomImage(); }));
   }
 
+  /**
+   * "Spins" the block for a duration,
+   * landing on the image name provided.
+   * @param name: Which image to stop on.
+   * @param duration: How long in ms to spin.
+   */
+  spin(name: string, duration?: number) {
+    duration = duration || 2000;
+
+    const result$ = interval(100)
+      .pipe(tap((i) => { this.randomImage(); }),
+        takeWhile(v => v < duration),
+        finalize(() => {
+          this.topItem = this.items.find(v => v.name === name);
+        }));
+
+    return result$.toPromise();
+  }
 }

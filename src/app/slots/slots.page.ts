@@ -6,6 +6,7 @@ import { SettingsService } from '../settings.service';
 import { Character } from '../character';
 import { Vehicle } from '../vehicle';
 import { ContainerComponent } from '../container/container.component';
+import { RandomBlockComponent } from '../random-block/random-block.component';
 
 @Component({
   selector: 'mk-slots',
@@ -25,10 +26,15 @@ export class SlotsPage implements OnInit {
     { name: 'Player 4', color: 'success' }  // Player 4 - green
   ];
 
-  @ViewChildren('character') private characterSpinners: QueryList<ContainerComponent>;
-  @ViewChildren('vehicle') private vehicleSpinners: QueryList<ContainerComponent>;
-  @ViewChildren('wheel') private wheelSpinners: QueryList<ContainerComponent>;
-  @ViewChildren('glider') private gliderSpinners: QueryList<ContainerComponent>;
+  // @ViewChildren('character') private characterSpinners: QueryList<ContainerComponent>;
+  // @ViewChildren('vehicle') private vehicleSpinners: QueryList<ContainerComponent>;
+  // @ViewChildren('wheel') private wheelSpinners: QueryList<ContainerComponent>;
+  // @ViewChildren('glider') private gliderSpinners: QueryList<ContainerComponent>;
+
+  @ViewChildren('character') private characterSpinners: QueryList<RandomBlockComponent>;
+  @ViewChildren('vehicle') private vehicleSpinners: QueryList<RandomBlockComponent>;
+  @ViewChildren('wheel') private wheelSpinners: QueryList<RandomBlockComponent>;
+  @ViewChildren('glider') private gliderSpinners: QueryList<RandomBlockComponent>;
 
   private settings: KartSettings;
 
