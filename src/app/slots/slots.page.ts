@@ -13,6 +13,8 @@ import { ContainerComponent } from '../container/container.component';
   styleUrls: ['slots.page.scss'],
 })
 export class SlotsPage implements OnInit {
+  private audio = new Audio('assets/sounds/item-box.mp3');
+
   public characters: Character[];
   public vehicles: Vehicle[];
   public wheels: MkItem[];
