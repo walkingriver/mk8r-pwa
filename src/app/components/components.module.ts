@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ContainerComponent } from '../container/container.component';
+import { CarouselComponent } from '../carousel/carousel.component';
 
 @NgModule({
   imports: [
@@ -10,9 +11,13 @@ import { ContainerComponent } from '../container/container.component';
     FormsModule,
     IonicModule.forRoot(),
   ],
-  declarations: [ContainerComponent],
+  declarations: [
+    CarouselComponent,
+    ContainerComponent
+  ],
   entryComponents: [],
   exports: [
+    CarouselComponent,
     ContainerComponent
   ]
 })
