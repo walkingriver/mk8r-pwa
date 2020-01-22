@@ -1,0 +1,9 @@
+<div class="container">
+  <div #spinner class="spinner" (click)="randomImage()">
+    <div *ngFor="let item of items" class="item" [ngClass]="{top: item.name===topItem.name}">
+      <img [src]="getImage(item)" class="pic">
+      <br/>
+      <span class="label">{{item.name}}</span>
+    </div>
+  </div>
+</div>

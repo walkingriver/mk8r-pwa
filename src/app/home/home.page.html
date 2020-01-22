@@ -11,21 +11,45 @@
 
 <ion-content class="ion-padding">
   <p>
-    This application is a totally unauthorized add-on for the very popular Mario Kart 8 by Nintendo for the Wii U&trade;.
+    This application is a totally unauthorized add-on for the very popular Mario Kart 8 by Nintendo for the Wii
+    U&trade;.
   </p>
   <p>
-    The app came about because my family plays Mario Kart for hours at a time. After a while, we discovered that each of us tended
+    The app came about because my family plays Mario Kart for hours at a time. After a while, we discovered that each of
+    us tended
     to favor the same character and kart combination.
   </p>
   <p>
-    We started by throwing dice for each player, kart, tire, and glider combination. It took a while, and it's hard to find 18-sided
+    We started by throwing dice for each player, kart, tire, and glider combination. It took a while, and it's hard to
+    find 18-sided
     dice. We had to come up with something a little simpler.
   </p>
   <p>
-    We have taken great care not to use any proprietary assets. Everything, to our knowledge, is fan created. While we believe
-    we have not infringed on any copyrights or violated any trademarks, there is always the potential that Nintendo could
+    We have taken great care not to use any proprietary assets. Everything, to our knowledge, is fan created. While we
+    believe
+    we have not infringed on any copyrights or violated any trademarks, there is always the potential that Nintendo
+    could
     come in an shut this app down.
   </p>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-random-block #character [items]="characters"></app-random-block>
+      </ion-col>
+      <ion-col>
+        <app-random-block #vehicle [items]="vehicles"></app-random-block>
+      </ion-col>
+      <ion-col>
+        <app-random-block #wheel [items]="wheels"></app-random-block>
+      </ion-col>
+      <ion-col>
+        <app-random-block #glider [items]="gliders"></app-random-block>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
   <ion-button expand="block" routerLink="/slots">
     I agree. Let's go!
   </ion-button>
