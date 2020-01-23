@@ -17,7 +17,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let player of players; let i = index" col-3>
+      <ion-col *ngFor="let player of players; let i = index" size="3">
         <ion-row>
           <mk-container #character [items]="characters" (click)="shuffleCharacter(character)"></mk-container>
         </ion-row>
