@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ApplicationRef, NgZone } from '@angular/core';
 import { MarioService } from '../mario.service';
 import { MkItem } from '../mk-item';
 import { KartSettings } from '../kart-settings';
@@ -34,7 +34,10 @@ export class SlotsPage implements OnInit {
 
   private settings: KartSettings;
 
-  constructor(mario: MarioService, private settingsService: SettingsService) {
+  constructor(mario: MarioService, 
+    private app: ApplicationRef,
+    private zone: NgZone,
+    private settingsService: SettingsService) {
     this.characters = mario.getAllCharacters();
     this.vehicles = mario.getAllVehicles();
     this.wheels = mario.getAllWheels();

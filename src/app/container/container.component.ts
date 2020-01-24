@@ -102,13 +102,15 @@ export class ContainerComponent implements AfterViewInit {
   }
 
   start() {
-    this.running = true;
+    // this.running = true;
+    this.spinner.nativeElement.classList.add('mk-spinning');
     // ContainerComponent.audio.currentTime=0;
     ContainerComponent.audio.play();
   }
 
   stop(item: number) {
-    this.running = false;
+    // this.running = false;
+    this.spinner.nativeElement.classList.remove('mk-spinning');
     if (item) {
       this.item = item;
     }
