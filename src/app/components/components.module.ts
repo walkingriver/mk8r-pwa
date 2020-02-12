@@ -7,8 +7,8 @@ import { ContainerComponent } from '../container/container.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    IonicModule.forRoot(),
+    FormsModule
+    // IonicModule.forRoot(),
   ],
   declarations: [ContainerComponent],
   entryComponents: [],
