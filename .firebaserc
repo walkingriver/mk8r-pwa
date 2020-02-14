@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "mk8r-pwa",
-    "ng-pwa": "mk8r-ng-pwa"
+    "ng-pwa": "mk8r-ng-pwa",
+    "final": "mk8r-pwa-final"
   }
 }
