@@ -1,8 +1,8 @@
 {
   "name": "mk8r",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "1.0.3",
+  "author": "Michael Callaghan",
+  "homepage": "https://walkingriver.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
