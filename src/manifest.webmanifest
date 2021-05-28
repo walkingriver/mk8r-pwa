@@ -1,7 +1,7 @@
 {
-  "name": "app",
-  "short_name": "app",
-  "theme_color": "#1976d2",
+  "name": "Mario Kart Randomizer",
+  "short_name": "MK8R",
+  "theme_color": "#75D0F7",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
