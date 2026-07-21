@@ -9,8 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { ComponentsModule } from './components/components.module';
 import { CanDeactivateGuard } from './can-deactivate.guard';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [AppComponent],
@@ -19,15 +17,7 @@ import { environment } from '../environments/environment';
         ComponentsModule,
         IonicModule.forRoot(),
         IonicStorageModule.forRoot(),
-        AppRoutingModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-            enabled: environment.production,
-            // Register the ServiceWorker as soon as the app is stable
-            // or after 30 seconds (whichever comes first).
-            registrationStrategy: 'registerWhenStable:30000'
-        })
-    ],
-    providers: [
+        AppRoutingModule,    providers: [
         CanDeactivateGuard,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
