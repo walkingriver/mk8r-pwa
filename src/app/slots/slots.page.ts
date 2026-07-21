@@ -8,9 +8,10 @@ import { Vehicle } from '../vehicle';
 import { ContainerComponent } from '../container/container.component';
 
 @Component({
-  selector: 'mk-slots',
-  templateUrl: 'slots.page.html',
-  styleUrls: ['slots.page.scss'],
+    selector: 'mk-slots',
+    templateUrl: 'slots.page.html',
+    styleUrls: ['slots.page.scss'],
+    standalone: false
 })
 export class SlotsPage implements OnInit {
   private audio = new Audio('assets/sounds/item-box.mp3');
@@ -48,7 +49,7 @@ export class SlotsPage implements OnInit {
     this.settings = await this.settingsService.loadSettings();
   }
 
-  async shuffleItems(player?: number): Promise<void> {
+  async shuffleItems(player = -1): Promise<void> {
     const shuffleCount = player > -1 ? 1 : this.players.length;
 
     const characters = this.randomizeCharacters(shuffleCount);
@@ -59,10 +60,10 @@ export class SlotsPage implements OnInit {
     let promises: Promise<number>[];
     if (shuffleCount === 1) {
       promises = [
-        this.characterSpinners.find((_, i) => i === player).spin(characters[0].name),
-        this.vehicleSpinners.find((_, i) => i === player).spin(vehicles[0].name),
-        this.wheelSpinners.find((_, i) => i === player).spin(wheels[0].name),
-        this.gliderSpinners.find((_, i) => i === player).spin(gliders[0].name)
+        this.characterSpinners.find((_, i) => i === player)!.spin(characters[0].name),
+        this.vehicleSpinners.find((_, i) => i === player)!.spin(vehicles[0].name),
+        this.wheelSpinners.find((_, i) => i === player)!.spin(wheels[0].name),
+        this.gliderSpinners.find((_, i) => i === player)!.spin(gliders[0].name)
       ];
     } else {
       promises = flatten(

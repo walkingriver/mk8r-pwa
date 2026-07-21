@@ -1,6 +1,9 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu
+      contentId="main-content"
+      type="overlay"
+    >
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
@@ -8,17 +11,46 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+          @for (p of appPages; track p) {
+            <ion-menu-toggle
+              auto-hide="false"
+            >
+              <ion-item
+                [routerDirection]="'root'"
+                [routerLink]="[p.url]"
+              >
+                <ion-icon
+                  slot="start"
+                  [name]="p.icon"
+                ></ion-icon>
+                <ion-label>
+                  {{ p.title }}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          }
+          <ion-item
+            button
+            (click)="checkForUpdate()"
+            detail="false"
+            [disabled]="!updater.isEnabled"
+          >
+            <ion-icon
+              slot="start"
+              name="cloud-download"
+            ></ion-icon>
+            <ion-label>
+              Check for Updates
+              @if (!updater.isEnabled) {
+                <span> Unavailable</span>
+              }
+            </ion-label>
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-router-outlet
+      id="main-content"
+    ></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

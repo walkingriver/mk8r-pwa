@@ -2,9 +2,10 @@ import { Component, Input, ViewChild, ElementRef, AfterViewInit, NgZone } from '
 import { MkItem } from '../mk-item';
 
 @Component({
-  selector: 'mk-container',
-  templateUrl: './container.component.html',
-  styleUrls: ['./container.component.scss']
+    selector: 'mk-container',
+    templateUrl: './container.component.html',
+    styleUrls: ['./container.component.scss'],
+    standalone: false
 })
 export class ContainerComponent implements AfterViewInit {
   @Input() public items: MkItem[];

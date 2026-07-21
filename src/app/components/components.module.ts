@@ -5,15 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { ContainerComponent } from '../container/container.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule.forRoot(),
-  ],
-  declarations: [ContainerComponent],
-  entryComponents: [],
-  exports: [
-    ContainerComponent
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule.forRoot(),
+    ],
+    declarations: [ContainerComponent],
+    exports: [
+        ContainerComponent
+    ]
 })
 export class ComponentsModule {}

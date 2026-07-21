@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { KartSettings } from './kart-settings';
 import { CharacterSize } from './character-size.enum';
 import { VehicleType } from './vehicle-type.enum';
@@ -15,15 +15,21 @@ export class SettingsService {
   };
 
   private settingsCache: KartSettings;
+  private readonly storageReady: Promise<Storage>;
 
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage) {
+    this.storageReady = this.storage.create();
+  }
 
-  saveSettings(settings: KartSettings): Promise<void> {
+  async saveSettings(settings: KartSettings): Promise<void> {
+    await this.storageReady;
     this.settingsCache = Object.assign({}, settings);
     return this.storage.set('kart-settings', settings);
   }
 
   async loadSettings(): Promise<KartSettings> {
+    await this.storageReady;
+
     if (!this.settingsCache) {
       const storedSettings = await this.storage.get('kart-settings');
       this.settingsCache = Object.assign({}, SettingsService.defaultSettings, storedSettings);

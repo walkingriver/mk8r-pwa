@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'enum'
+    name: 'enum',
+    standalone: false
 })
 export class EnumPipe implements PipeTransform {
-  transform(value: object): string[] {
-    const keys = Object.keys(value);
-    return keys.slice(0, keys.length / 2);
+  transform<T extends Record<string, string | number>>(value: T): Array<T[keyof T]> {
+    const keys = Object.keys(value).filter((key) => Number.isNaN(Number(key)));
+    return keys.map((key) => value[key as keyof T]);
   }
 }

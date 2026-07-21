@@ -1,39 +1,57 @@
-# Summary
-Randomizer for Mario Kart 8 on the Nintendo Wii U. 
+# Mario Kart Randomizer (MK8R)
 
-# Description
-  <p>
-    This application is a totally unauthorized add-on for the very popular Mario Kart 8 by Nintendo for the Wii U&trade;.
-  </p>
-  <p>
-    The app came about because my family plays Mario Kart for hours at a time. After a while, we discovered that each of us tended
-    to favor the same character and kart combination.
-  </p>
-  <p>
-    We started by throwing dice for each player, kart, tire, and glider combination. It took a while, and it's hard to find 18-sided
-    dice. We had to come up with something a little simpler.
-  </p>
-  <p>
-    We have taken great care not to use any proprietary assets. Everything, to our knowledge, is fan created. While we believe
-    we have not infringed on any copyrights or violated any trademarks, there is always the potential that Nintendo could
-    come in an shut this app down.
-  </p>
-  
-# Related Information
-This app is also the sample app for my book and course on building progressive web apps with Angular.
+Sample application for [*Developing Progressive Web Applications with Angular*](https://gum.co/pwa-angular) by Michael D. Callaghan.
 
-- Course: https://gum.co/angular-pwa
-- DRM-free eBook: https://gum.co/pwa-angular
-- Kindle eBook: https://amzn.to/3teSRxf
+This is an unofficial fan utility for Mario Kart 8 (Wii U). It is not affiliated with Nintendo.
 
-# Quick Start
-1. Clone this repo.
-1. Install the required libraries and frameworks.
-1. Run `npm install`
-1. Run `npm start`
+## Quick start
+
+```bash
+git clone https://github.com/walkingriver/mk8r-pwa.git
+cd mk8r-pwa
+nvm use          # requires Node 22.22.3+ (see .nvmrc)
+npm install
+npm start
+```
+
+Open [http://localhost:4200](http://localhost:4200).
+
+Production build:
+
+```bash
+npm run build
+```
+
+Output is written to `www/`.
 
 ## Requirements
-- Angular 11+
-- Ionic 5+
-- Node 12+
 
+- Node.js **22.22.3+** (Angular 22 CLI requirement)
+- npm 10+
+
+Use [nvm](https://github.com/nvm-sh/nvm) if needed: `nvm install` in the project root reads `.nvmrc`.
+
+## Branches
+
+| Branch | Use when |
+|--------|----------|
+| `no-pwa` | Following the book from hosting onward — app **without** PWA/service worker |
+| `main` | Finished sample — PWA, manifest, service worker, and in-app update prompts |
+
+If you are working through the PWA chapters, start on `no-pwa`:
+
+```bash
+git checkout no-pwa
+npm install
+npm start
+```
+
+## Related links
+
+- Book (DRM-free): https://gum.co/pwa-angular
+- Video course: https://gum.co/angular-pwa
+- Kindle: https://amzn.to/3teSRxf
+
+## License
+
+See repository license. Mario Kart is a trademark of Nintendo. This project uses fan-created assets only.

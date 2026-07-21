@@ -5,9 +5,10 @@ import { SettingsService } from '../settings.service';
 import { CanDeactivateComponent } from '../can-deactivate.guard';
 
 @Component({
-  selector: 'mk-settings',
-  templateUrl: './settings.page.html',
-  styleUrls: ['./settings.page.scss'],
+    selector: 'mk-settings',
+    templateUrl: './settings.page.html',
+    styleUrls: ['./settings.page.scss'],
+    standalone: false
 })
 export class SettingsPage implements OnInit, OnDestroy, CanDeactivateComponent {
   // Needed to access enums inside the template
