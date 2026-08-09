@@ -38,6 +38,10 @@ export class MarioService {
     { size: CharacterSize.Medium, name: 'Cat Peach', image: '32px-MK8_Cat_Peach_Icon.png' },
     { size: CharacterSize.Medium, name: 'Villager', image: '50px-MK8_Villager_Icon.png' },
     { size: CharacterSize.Medium | CharacterSize.Mii, name: 'Mii (Medium)', image: '32px-Mii_MK8.png' },
+    { size: CharacterSize.Medium, name: 'Birdo', image: '32px-MK8_Mario_Icon.png'}, //Add image
+    { size: CharacterSize.Medium, name: 'Kamek', image: '32px-MK8_Mario_Icon.png'}, //Add image
+    { size: CharacterSize.Medium, name: 'Diddy Kong', image: '32px-MK8_Mario_Icon.png'}, //Add image
+    { size: CharacterSize.Medium, name: 'Peachette', image: '32px-MK8_Mario_Icon.png'}, //Add image
     { size: CharacterSize.Large, name: 'Rosalina', image: '32px-MK8_Rosalina_Icon.png' },
     { size: CharacterSize.Large, name: 'Bowser', image: '32px-MK8_Bowser_Icon.png' },
     { size: CharacterSize.Large, name: 'Donkey Kong', image: '32px-MK8_DKong_Icon.png' },
@@ -47,7 +51,11 @@ export class MarioService {
     { size: CharacterSize.Large, name: 'Morton', image: '32px-MK8_Morton_Icon.png' },
     { size: CharacterSize.Large, name: 'Link', image: '32px-MK8_Link_Icon.png' },
     { size: CharacterSize.Large, name: 'Dry Bowser', image: '32px-MK8_Dry_Bowser_Icon.png' },
-    { size: CharacterSize.Large | CharacterSize.Mii, name: 'Mii (Large)', image: '32px-Mii_MK8.png' }
+    { size: CharacterSize.Large | CharacterSize.Mii, name: 'Mii (Large)', image: '32px-Mii_MK8.png' },
+    { size: CharacterSize.Large, name: 'Petey Piranha', image: '32px-MK8_Mario_Icon.png'}, //Add image
+    { size: CharacterSize.Large, name: 'Wiggler', image: '32px-MK8_Mario_Icon.png'}, //Add image
+    { size: CharacterSize.Large, name: 'Funky Kong', image: '32px-MK8_Mario_Icon.png'}, //Add image
+    { size: CharacterSize.Large, name: 'Pauline', image: '32px-MK8_Mario_Icon.png'}, //Add image
   ];
 
   private static vehicles: Vehicle[] = [
